@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Console</title>
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            color: #007bff;
+        }
+
+        p {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    .pi-symbol {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: #333;
+    }
+     a:link {
+      text-decoration: none;
+        }
+
+     a:visited {
+      text-decoration: none;
+        }
+
+     a:hover {
+      text-decoration: none;
+        }
+
+     a:active {
+      text-decoration: none;
+        }
+
+</style>
+
+
+</head>
+<body>
+    <h1>Admin Console</h1>
+
+    <p>This system is for authorized users only.</p><br>
+    <p>Individual use of this computer system and/or network without authority, or in excess of your authority, is strictly prohibited.</p>
+    <p>Monitoring of transmissions or transactional information may be conducted to ensure the proper functioning and security of electronic communication resources and the individual using the system explicitly authorizes the use of automated offensive security measures to enforce system security.</p>
+    <p>Anyone using this system expressly consents to such monitoring and is advised that if such monitoring reveals possible criminal activity or policy violation, system personnel may provide the evidence of such monitoring to law enforcement or to other senior officials for disciplinary action, or offensive security measures against your device. </p>
+
+    <p>Click the button below to download the Admin Console package.</p>
+    
+    <a href="admin-console.html" download="admin-console.html" id="downloadBtn">
+        <button>Download Console</button>
+    </a>
+
+    <script>
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            // The file has been downloaded and opened
+            setTimeout(function() {
+                window.open('admin-console.zip', '_blank');
+
+            }, 1000); 
+        });
+    </script>
+</body>
+        <div class="pi-symbol"><a href=admin-console.html>&#960;</a></div>
+
+</html>
