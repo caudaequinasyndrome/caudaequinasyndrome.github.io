@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Cauda Equina Syndrome</title>
+  <meta name="description" content="Cauda Equinaa Syndrome Survival to Recovery">
+  <meta name="robots" content="index, follow">
+
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+
+* {
+  box-sizing: border-box;
+}
+   .pi-symbol {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #333;
+	a:link { 
+	  text-decoration: none; 
+	} 
+	a:visited { 
+	  text-decoration: none; 
+	}
+    }
+body {
+  color: #6495ED;
+  margin: 0 auto;
+  max-width: 50em;
+  font-family: "Roboto", "Arial", sans-serif;
+  font-size: medium;
+  line-height: 1.5;
+  padding: 2em 1em;
+  background: #16161D;
+}
+
+h1 {
+  font-size: 2.5em
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em
+}
+
+h2, h3 {
+  margin-top: 1.5em;
+}
+
+h1, h2, strong {
+  color: #FFB000;
+}
+
+code, pre {
+  background: #282828;
+}
+
+code {
+  padding: 2px 4px;
+  vertical-align: text-bottom;
+}
+
+pre {
+  border-left: 2px solid #bbb;
+  padding: 1em;
+}
+
+a {
+  color: #f56a6a;
+}
+
+blockquote, q {
+  border-left: solid 4px #bbb;
+  font-style: italic;
+  margin: 0 0 2em 0;
+  padding: 0.5em 0 0.5em 2em;
+}
+
+blockquote::before, blockquote::after, q::before, q::after {
+    content: '';
+    content: none;
+}
+
+.image-container {
+    text-align: center; /* Centers inline elements */
+}
+
+.centered-image {
+    display: block; /* Makes the image a block-level element */
+    margin: auto; /* Applies automatic margins to the left and right, centering the image */
+    max-width: 100%; /* Optional: Ensures the image is responsive and does not exceed its container's width */
+}
+
+
+    
+</style>
+
+</head>
+<body>
+<script>
+        function getCookie(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+
+        function hashToken(uuid) {
+            return crypto.subtle.digest('SHA-256', new TextEncoder().encode(uuid))
+                .then(buffer => Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join(''));
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const accessToken = getCookie("accessTokenClient");
+            const sessionUUID = getCookie("sessionUUID");
+            const localStorageToken = localStorage.getItem("accessToken");
+            const localStorageUUID = localStorage.getItem("sessionUUID");
+            const sessionStorageToken = sessionStorage.getItem("accessToken");
+            const sessionStorageUUID = sessionStorage.getItem("sessionUUID");
+
+            console.log("Access Token from Cookie:", accessToken);
+            console.log("Session UUID from Cookie:", sessionUUID);
+            console.log("Access Token from Local Storage:", localStorageToken);
+            console.log("Session UUID from Local Storage:", localStorageUUID);
+            console.log("Access Token from Session Storage:", sessionStorageToken);
+            console.log("Session UUID from Session Storage:", sessionStorageUUID);
+
+            if (sessionUUID && (accessToken || localStorageToken || sessionStorageToken)) {
+                hashToken(sessionUUID).then(hashedToken => {
+                    if (accessToken === hashedToken || localStorageToken === hashedToken || sessionStorageToken === hashedToken) {
+                        console.log("Valid access token found:", hashedToken);
+                    } else {
+                        window.location.href = "index.html"; // Redirect if token is invalid
+                    }
+                });
+            } else {
+                window.location.href = "index.html"; // Redirect to the PIN entry page if no valid token is found
+            }
+        });
+</script>
+
+<header id="title-block-header">
+<h1 class="title">Cauda Equina Syndrome</h1>
+</header>
+<h2 id="survival-to-recovery">Survival to recovery</h2>
+<p>Nestled between the fourth and fifth lumbar vertebrae, the "Cauda Equina" is a nerve cluster of paramount importance. Its compression, whether through genetic disposition or external environmental factors, by a misaligned vertebra or a protruding disc, can unleash a cascade of adverse effects. Only through the skilled hands of a consummate surgeon can such a predicament be rectified. This website unfolds the narrative of my odyssey from the initial challenge of wiggling my big toe, to the triumph of jogging an indoor 5K, further evolving into the rigorous training in Krav Maga, and culminating in the daily dedication to rowing machine exercises, a journey of resilience, recovery, and ultimate rejuvenation.</p>
+<div class="image-container">
+	<img src="JFalcetti-CaudaEquina.webp" alt="Cauda equina spine rear view" loading="lazy" class="centered-image">
+</div>
+
+<h2 id="preface">Preface</h2>
+In August 2016, my life was irrevocably transformed. Since childhood, I had been plagued by "back problems," a predicament further aggravated by enduring physical bullying and hazing, casting a pall over my youth. In an endeavor to ameliorate my spinal conditions, I sought the counsel of a broad spectrum of health professionals, from chiropractors to physical and sports therapists, in hopes of diagnosing and rectifying my spinal maladies. Tragically, their collective expertise failed to recognize the underlying issue of spinal nerve root compression, despite the glaring indicator of my sciatic pain. While I believed myself to be standing with perfect posture, I was, unbeknownst to me, displaying a sideward tilt reminiscent of individuals afflicted with scoliosis, a stark testament to the complexity and challenges of diagnosing spinal conditions.</p>
+
+Updates at the bottom of the page. 
+
+<h2 id="others-experience">Others Experience</h2>
+<ul>
+<li><a href="https://mycaudaequinasyndrome.blogspot.com/" rel="noopener noreferrer">Mary Anne Hussain</a></li>
+<li><a href="https://caudaequinaandme.blogspot.com/" rel="noopener noreferrer">Lynn</a></li>
+<li><a href="https://www.ihavecaudaequina.com/news/my-story-living-with-cauda-equina/" rel="noopener noreferrer">Catrina</a></li>
+<li><a href="https://davidunthank.com/cauda-equina-syndrome/" rel="noopener noreferrer">David Unthank</a></li>
+</ul>
+<h2 id="wasted-golden-hours">Wasted Golden Hours</h2>
+<div class="image-container">
+<img src="AbbottNorthwesternEmergency.webp" title="fig: Abbot Northwestern" height="250" alt="Abbott Northwestern Emergency Department" loading="lazy" class="centered-image">
+</div>
+<p>The precarious journey of navigating a spinal injury is one where survival is delicately balanced on a razor's edge of hours and minutes. Amidst this critical window, I was acutely aware of a sinister wrong within, yet answers and resolutions eluded me, leaving me in a limbo of uncertainty and fear. In a desperate bid for clarity and healing, I turned to the emergency room of <a href="https://www.allinahealth.org/abbott-northwestern-hospital">Allina Health's Abbott Northwestern Hospital</a>, renowned for its esteemed Spinal Center, propelled by the alarming cessation of my ability to urinate. Contrary to my hopes for intervention, I found myself discharged into the cold embrace of indifference, devoid of the much-needed medical intervention. Shrouded in a cloak of dejection, with my physical autonomy compromised, I retraced my steps home from the very gates of the <a href="https://en.wikipedia.org/wiki/Abbott_Northwestern_Hospital">Abbott Northwestern Emergency Department</a>, a journey marked by solitude and the profound echo of unmet medical needs.
+
+<div class="image-container">
+<img src="AbbottNorthwesternBladderBuster.webp" title="fig: Abbot Northwestern Bladder Control Loss" loading="lazy" height="250" alt="Abbott Northwestern Bladder Buster" class="centered-image">
+</div>
+<p>Not long after, I renewed my efforts to locate a medical practitioner who would consent to order an MRI scan of my spine. My persistence paid off when I engaged with a nurse at Hennepin Healthcare—the county's flagship General Hospital—who scolded me for my MRI petition and stressed the criticality of my immediate admission to Hennepin Healthcare's emergency department. "Listen, you're a young man. If you find yourself so debilitated that the mere act of going to the bathroom is unmanageable, you shouldn't be scouring for an MRI; your recourse is to call 911. Must I initiate that call for you?" Buoyed by this directive, harboring a glimmer of hope for definitive treatment, I donned my attire and reached out to Emergency Medical Services, seeking conveyance to the haven of Hennepin Health.</p>
+<h2 id="hospital-admission">Hospital Admission</h2>
+<p>In the wake of being spurned by <a href="https://www.abbottnorthwestern.com/">Abbott Northwestern Hospital</a>, the eventual dispatch of EMS signified my forthcoming admission to Hennepin Health, a premier  <a href="https://www.hennepinhealthcare.org/">Level 1 Trauma hospital</a>. The journey to the hospital was laden with intense discomfort, a situation that briefly culminated in unconsciousness due to the overwhelming pain. Upon regaining consciousness, I was enveloped in a medicated fog, a sensation bizarrely close to normalcy, aside from the catheter and the disturbing lack of sensation beneath my hips. In due course, an MRI substantiated my condition: spinal nerve root compression at the cauda equina, pressing against my spinal cord, prompting swift preparation for surgical intervention. The surgeon assigned to my case was extraordinary, and her response to my casual inquiry about her hobbies—“Brain Surgery,” delivered with a knowing smirk—infused a moment of levity before my prompt advancement to the Operating Room, ready for the crucial surgery that lay ahead.</p>
+<div class="image-container">
+<img src="HennepinHealthHCMC.webp" title="fig: Hennepin Health (HCMC) Emergency Department" loading="lazy" height="250" alt="Hennepin Health HCMC" class="centered-image">
+</div>
+<h2 id="post-operation">Post Operation</h2>
+<p>After the triumphant procedure of my discectomy and hemilaminectomy, consciousness crept back to me, revealing an unnerving absence of feeling below my hips. Yet, instead of dwelling in fear of paraplegia, my thoughts turned to "Kill Bill" and Uma Thurman's iconic role as Beatrice—awakening with paralyzed legs, yet harnessing indomitable <a href="https://www.youtube.com/watch?v=XNg6v-mL_o0">willpower</a> ( <a href="wiggle-beatrice.webm">local copy</a> ) to forge her path to recovery. This cinematic parallel amused my surgeons (U.S., P.D., T.B., and W.G.), though they harbored concerns that my movie-inspired resilience might verge on hallucination. As I lay in the critical care unit over the ensuing days, it was this blend of reality and fiction that sustained me, culminating in a triumphant moment three days later when I could wiggle my big toe, a testament to the power of will and the first step in my own journey of recovery.</p>
+<div class="image-container">
+<video width="320" height="240" preload="auto" autoplay loop controls>
+<source src="wiggle.mp4" type="video/mp4" class="centered-image">
+</video>
+</div>
+<h2 id="beginning-rehabilitation">Beginning Rehabilitation</h2>
+<p>Following my release from the critical care unit, my rehabilitation odyssey commenced at the esteemed <a href="https://www.hennepinhealthcare.org/specialty/miland-e-knapp-rehabilitation-center/">Knapp Rehabilitation Center</a>, nestled within the Hennepin Healthcare system. The program, spanning an arduous two weeks, was characterized by a relentless schedule of over three hours of therapy each day. It was an amalgam of psychological counseling, physical therapy regimens, mobility aid training, and even therapeutic guitar sessions. Despite its strenuous nature, the program emerged as a profoundly positive milestone, charting the course for my recovery.</p>
+<p>The prerequisite for my departure from Knapp was a home environment tailored to my rehabilitative needs. The digital era's boon, online shopping, enabled me to furnish my home with indispensable aids, including a shower stool, walker, cane, and a suite of other vital tools for my rehabilitation journey.</p>
+<p>The cornerstone of my transition home was unequivocally my wife. Her foresight in preparing our home for my arrival was nothing short of heroic. Moreover, her anticipation of the extensive periods I would spend seated led her to procure a reclining chair for me. This chair became my haven for the year that followed, offering a semblance of comfort that undeniably accelerated my recovery.</p>
+<h2 id="rehabilitation-at-home">Rehabilitation at Home</h2>
+<p>Over the ensuing weeks, I embarked on an exhaustive exploration into the realm of neuropathy, traversing the spectrum from trauma-induced to diabetic neuropathy, and addressing afflictions of the hands, feet, and genitals. The metaphor commonly used to describe nerve regeneration, likening it to sugar forming crystals on a stick, simplifies a more complex reality. Nerve regeneration occurs not in a straightforward manner but in a disjointed patchwork. Despite retaining a scant 10% of sensation below my waist, this sliver of functionality was sufficient to enable my navigation from the sanctuary of my chair to my walker, and thence to my bedroom or bathroom, before returning to my starting point. In a journey mirroring that of Beatrice in "Kill Bill," it was the sheer force of will that became my primary tool for inciting movement in my muscles, a testament to the power of human resilience and determination in the face of daunting physical challenges.</p>
+<div class="image-container">
+<img src="types-of-neuropathy.webp" title="fig:" loading="lazy" height="350" alt="Types of Neuropathy" class="centered-image">
+</div>
+<p>Navigating the journey of reeducating muscles that have lost every shred of memory is an arduous endeavor. Faced with the daunting reality of absolute neuropathy, I embraced my predicament with the resolve of a 'Mad Scientist,' determined to uncover innovative methods to reclaim my muscles' functionality. The apex of my experimental ventures was the adoption of a TENS (Transcutaneous Electrical Nerve Stimulation) Unit, which proved instrumental in forging and fortifying both ancient and newly charted neural pathways. As my muscles lay in a state akin to suspended animation, the strategic employment of electrical stimulation to jumpstart their regrowth was evocative of the electrifying awakening of Dr. Frankenstein’s Monster—a testament to the power of ingenuity and persistence in the face of seemingly insurmountable challenges.<p>
+<div class="image-container">
+<img src="young_frankenstein.webp" title="fig:" loading="lazy" height="350" alt="Young Frankenstein Electrified" class="centered-image">
+</div>
+<p>At the earliest opportunity, I embarked on a comprehensive nutritional strategy to supply my muscles and nerves with the <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4208100/">vital elements they needed for repair and growth.</a> This strategy entailed a daily intake of a multivitamin, meticulously selected for its high concentration of critical vitamins including <a href="https://www.bodylogicmd.com/blog/these-are-the-10-most-important-vitamins-for-muscles/">D, B12, B3, B6, E, A, C, B2, and B9.</a> To enhance my recuperation, I incorporated additional Vitamin E and Omega-3 Fatty Acids via fish oil capsules, complemented by supplementary doses of <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4819126/">B12 and Folate.</a> Drawing inspiration from the disciplined nutrition regimes of bodybuilders, I tailored this approach to suit my unique situation, aiming to rebuild my physical form from its very foundations.<p>
+<h2 id="rehabilitation-to-growth">Rehabilitation to Growth</h2>
+<p>My methods paid off and the results were significant. Within just three months, I regained sufficient control over my muscles to walk, a milestone that spurred me to begin indoor jogging in small circles within the confines of my bedroom. Starting with tentative shuffles, I compiled a playlist of upbeat, positive music to serve as a motivator and a measure of time. Gradually, as my endurance improved, I expanded my playlist and increased my distance, progressing from a kilometer to a mile, and eventually to 3.12 miles or 5 kilometers. By integrating a mix of balance exercises, squats on both legs and on one leg, and later, planks, I enhanced my mobility and sensitivity further.</p>
+<p>Interestingly, I noticed a correlation between the regrowth of leg hair and the areas regaining sensation; the patches with hair indicated regions of partial repair and reduced neuropathy, whereas the bald patches remained fully neuropathic. To this day, approximately 5% of my body remains neuropathic and hairless.</p>
+<p>Physical therapy evolved into a daily regimen, enriched by a variety of exercises designed to strengthen my back and build muscle in my legs. The most recent addition to my routine is the rowing machine, offering a comprehensive full-body workout that targets a broad spectrum of muscles in need of rehabilitation or strengthening.</p>
+<h2 id="continued-growth">Continued Growth</h2>
+<p>Physical therapy and exercise have seamlessly woven themselves into the fabric of my daily life. Prior to my surgery, the mere thought of engaging in most forms of exercise was unfathomable. Now, I embrace the personal challenge of continuously discovering new activities to incorporate into my regimen. Among the most formidable obstacles I encounter are not physical, but mental: the nagging guilt that skipping a single day of exercise equates to personal failure, despite recognizing the irrationality of such thoughts. Similarly, the apprehension of overexerting myself looms large, another baseless fear that I consciously strive to overcome.</p>
+<h2 id="extreme-weight-loss">Extreme Weight Loss in 2023</h2>
+<p>I've embarked on a journey of continually discovering new, albeit sometimes irrational, challenges for myself. Despite pouring considerable effort into my exercise regimen, I faced an uphill battle with weight gain, reaching a point where US 3XL clothing strained to fit. The stark realization came when I encountered the term "Presented Appearance: OBESE" in my medical records, propelling me towards adopting drastic measures for weight loss that I persist with to this day. Transitioning to view "Food as Fuel" rather than a source of comfort or indulgence marked the initial, and arguably most profound, shift in my mindset. It became a question of optimizing my intake with the right nutrients while curtailing everything else.</p>
+<p>After exploring and evaluating numerous "Meal in a Bottle" options, I opted to concoct my own blend using a large shake bottle. For those curious about the specifics, my recipe includes <a href="https://soylent.com/products/soylent-drink-banana">Soylent Banana</a> as the foundational element, enriched with <a href="https://naturesplus.com/collections/spiru-tein">NaturesPlus SPIRU-TEIN Shake in Banana Flavor</a> to satisfy my protein and vitamin needs, complemented by a scoop of Peak Performance Unsweetened Organic Greens for those elusive edge nutrients. To this mixture, I add yogurt for probiotics, honey for a touch of sweetness, and fruit for flavor, blending it all into a nourishing shake. This concoction sustains me for 10-12 hours effortlessly. Should hunger pangs arise, I simply hydrate with some water.</p>
+<p>
+<h2 id="soggy-oats">Soggy Oats!</h2>
+<p> 
+Alright, let's talk about what some call Mush, Overnight Oats, or whatever name suits your fancy. Here's the deal: grab a substantial amount of Quaker Oats rolled oats and pour them into a jar. Next, drench them with your milk of choice (be it dairy milk, soy milk, almond milk) until they're just submerged, then stash the jar in the fridge overnight. The next day, you're all set for a basic yet satisfying meal. But why stop there? Elevate your oats by adding a dash of nutmeg, some dehydrated apples, a drizzle of honey, slices of banana, a sprinkle of Maca Root powder, or even a handful of granola for a bit of crunch if you're feeling adventurous. This upgraded mush not only tastes fantastic but is also effortless to prepare and serve. Having invested in a 10 lb bucket of oats and a 25 lb bag of granola, it's clear I'm committed to enjoying oats in my meal rotation for the foreseeable future.
+</p>
+<h2 id="checkpoint">Checkpoint!</h2>
+<p>
+As a personal success marker I'm now over half way to one of two weight goals. I'm now 70 lbs lighter than when I started this page, I just broke 250 lbs. My first goal is 210 lbs / 95 Kg with a stretch goal of 185 lbs / 84 Kg. 
+</p>
+<h2 id="IKMF">International Krav Maga Foundation</h2>
+<p>
+A persistent challenge I face involves reactivating different parts of my body, from regaining sensation in a few toes to enhancing gluteal strength and overall coordination. To tackle these issues and navigate the journey of retraining my muscles in a secure and systematic manner, I chose to become a student of IKMF (Krav Maga, which translates to "Contact Combat" in Hebrew). Among the myriad martial arts available, the ethos of Krav Maga resonated deeply with me, encapsulated by its guiding principle: "So that one may walk in peace." This philosophy seemed perfectly aligned with my goal of restoring my body's functionality and achieving a state of tranquility.</p>
+<div class="image-container">
+<img src="IKMF.webp" width="250" alt="International Krav Maga Foundation Logo" class="centered-image" loading="lazy"> 
+</div>
+<h2 id="thank-you">Thank you, Downtime Apology, Compliance, rewrite</h2>
+<p>Thank you for your time reading this experience. I hope that you can also read the experiences in the preface above and I hope that this helps you or someone you know. As of 2024 Feb 14th this is moved from GitHub.com to Bunny.net CDN since GitHub stopped serving it for some reason. My apologies for the downtime. I took care of all of those code compliance issues so this now is 100% valid HTML. Also, I got a wild hare up there and decided to rewrite a large portion of this site. I hope it reads better and is entertaining.</p>
+<p>I can be found on <a rel="me" href="https://social.treehouse.systems/@mj">Mastodon</a>, or through the contacts at my <a href="https://www.matthewjharmon.com">personal biography</a>.</p>
+<h3 id="disclaimer">Disclaimer</h3>
+<p> I am not a medical professional, and the following is not intended as medical advice. My journey to self-taught expertise emerged from navigating my own recovery process after undergoing surgery to address Cauda Equina Syndrome. Through this experience, I've gained a wealth of knowledge and understanding, becoming an autodidact in managing my rehabilitation.</p>
+<footer>
+<pre><code><br>
+Latest edit: 
+2024-02-25 21:34:42.000
+MJD: 60365.89900
+Diebus ex quo salvatus fui: 1651 </code></pre>
+</footer>
+</body>
+<div class="pi-symbol"><a href=admin/>&#960;</a></div>
+</html>
