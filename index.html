@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIN Entry</title>
-    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'nonce-123456'; style-src 'self' 'nonce-123456'">
-    <style nonce="123456">
+    <title>Access Portal</title>
+    <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -24,6 +23,19 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: opacity 1s ease-in-out;
+        }
+
+        .images {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .images img {
+            width: 100px;
+            height: auto;
+            margin: 0 10px;
         }
 
         input[type="text"] {
@@ -47,6 +59,11 @@
             background-color: #45a049;
         }
 
+        button:disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+
         #message {
             margin-top: 20px;
             font-size: 16px;
@@ -61,18 +78,23 @@
             opacity: 0;
         }
     </style>
+    <script src="js/crypto-js.min.js"></script>
+    <script src="js/fp.min.js"></script>
 </head>
 <body>
     <div class="container">
+        <div class="images">
+            <img src="img/human-ok.png" alt="Human OK">
+            <img src="img/no-toasters.webp" alt="No Toasters">
+        </div>
         <h1>Enter PIN to Access</h1>
         <p id="generatedPIN"></p>
-        <input type="text" id="pinInput" maxlength="8" placeholder="Enter 8-digit PIN">
-        <button onclick="checkPIN()">Submit</button>
+        <input type="text" id="pinInput" maxlength="9" placeholder="Enter 8-digit PIN">
+        <button id="submitButton" onclick="checkPIN()" disabled>Submit</button>
         <p id="message"></p>
     </div>
-    <script nonce="123456">
+    <script>
         document.addEventListener("DOMContentLoaded", function() {
-            clearCookies();
             generatePIN();
             document.getElementById("pinInput").focus();
 
@@ -80,6 +102,16 @@
                 if (event.key === "Enter") {
                     checkPIN();
                 }
+            });
+
+            // Initialize FingerprintJS and check entropy
+            FingerprintJS.load().then(fp => {
+                fp.get().then(result => {
+                    const entropy = result.components;
+                    if (evaluateEntropy(entropy)) {
+                        document.getElementById("submitButton").disabled = false;
+                    }
+                });
             });
         });
 
@@ -101,66 +133,105 @@
             }, 100);
         }
 
-        function generateUUID() {
-            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-                const r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
+        function addCountries(url, a, b) {
+            var tempUrl = url;
+            if (a != null) {
+                var tempUrlOne = new URL(tempUrl);
+                tempUrl += ((tempUrlOne.search == "") ? "?" : "&") + "token_countries=" + a;
+            }
+            if (b != null) {
+                var tempUrlTwo = new URL(tempUrl);
+                tempUrl += ((tempUrlTwo.search == "") ? "?" : "&") + "token_countries_blocked=" + b;
+            }
+            return tempUrl;
+        }
+
+        function signUrl(url, securityKey, expirationTime = 3600, userIp = null, isDirectory = false, pathAllowed = '', countriesAllowed = null, countriesBlocked = null) {
+            var parameterData = "", parameterDataUrl = "", signaturePath = "", hashableBase = "", token = "";
+            var expires = Math.floor(Date.now() / 1000) + expirationTime;
+            url = addCountries(url, countriesAllowed, countriesBlocked);
+            var parsedUrl = new URL(url);
+            var parameters = new URLSearchParams(parsedUrl.search);
+
+            if (pathAllowed !== "") {
+                signaturePath = pathAllowed;
+                parameters.set("token_path", signaturePath);
+            } else {
+                signaturePath = decodeURIComponent(parsedUrl.pathname);
+            }
+            
+            var sortedParams = Array.from(parameters).sort();
+            sortedParams.forEach(function([key, value]) {
+                if (value === "") {
+                    return;
+                }
+                if (parameterData.length > 0) {
+                    parameterData += "&";
+                }
+                parameterData += key + "=" + value;
+                parameterDataUrl += "&" + key + "=" + encodeURIComponent(value);
             });
-        }
 
-        function hashToken(uuid) {
-            return crypto.subtle.digest('SHA-256', new TextEncoder().encode(uuid))
-                .then(buffer => Array.from(new Uint8Array(buffer)).map(b => b.toString(16).padStart(2, '0')).join(''));
-        }
-
-        function setCookie(name, value, days) {
-            const date = new Date();
-            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-            const expires = "expires=" + date.toUTCString();
-            document.cookie = `${name}=${value}; ${expires}; path=/; SameSite=Lax; Secure`;
-        }
-
-        function deleteCookie(name) {
-            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax; Secure`;
-        }
-
-        function clearCookies() {
-            deleteCookie("accessTokenClient");
-            deleteCookie("sessionUUID");
+            hashableBase = securityKey + signaturePath + expires + ((userIp != null) ? userIp : "") + parameterData;
+            token = CryptoJS.SHA256(hashableBase).toString(CryptoJS.enc.Base64);
+            token = token.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+            
+            if (isDirectory) {
+                return parsedUrl.protocol + "//" + parsedUrl.host + "/bcdn_token=" + token + parameterDataUrl + "&expires=" + expires + parsedUrl.pathname;
+            } else {
+                return parsedUrl.protocol + "//" + parsedUrl.host + parsedUrl.pathname + "?token=" + token + parameterDataUrl + "&expires=" + expires;
+            }
         }
 
         function checkPIN() {
-            const userPIN = document.getElementById("pinInput").value;
+            let userPIN = document.getElementById("pinInput").value;
+            if (userPIN.length === 9 && userPIN.includes(" ")) {
+                userPIN = userPIN.replace(" ", "");
+            }
             const messageElement = document.getElementById("message");
 
             if (userPIN === generatedPIN) {
                 messageElement.style.color = "green";
                 messageElement.textContent = "Access Granted!";
-                const uuid = generateUUID();
-                hashToken(uuid).then(hashedToken => {
-                    clearCookies();
-                    localStorage.removeItem("accessToken");
-                    sessionStorage.removeItem("accessToken");
 
-                    setCookie("accessTokenClient", hashedToken, 1);
-                    setCookie("sessionUUID", uuid, 1);
-                    localStorage.setItem("accessToken", hashedToken);
-                    localStorage.setItem("sessionUUID", uuid);
-                    sessionStorage.setItem("accessToken", hashedToken);
-                    sessionStorage.setItem("sessionUUID", uuid);
+                const baseUrl = "https://caudaequinasyndrome.org/site.html";
+                const securityKey = "";
+                const expirationTime = 3600; // Token valid for 1 hour
 
-                    setTimeout(() => {
-                        document.body.classList.add("fade-out");
-                        document.querySelector(".container").classList.add("fade-out");
-                    }, 500);
-                    setTimeout(() => {
-                        window.location.href = "site.html";
-                    }, 1500);
-                });
+                const tokenURL = signUrl(baseUrl, securityKey, expirationTime);
+                
+                setTimeout(() => {
+                    document.body.classList.add("fade-out");
+                    document.querySelector(".container").classList.add("fade-out");
+                }, 500);
+                setTimeout(() => {
+                    window.location.href = tokenURL;
+                }, 1500);
             } else {
                 messageElement.style.color = "red";
                 messageElement.textContent = "Incorrect PIN. Please try again.";
             }
+        }
+
+        function evaluateEntropy(components) {
+            const requiredEntropy = 10; // Define the minimum entropy threshold
+
+            let entropyScore = 0;
+            const entropySources = [
+                'userAgent', 'language', 'colorDepth', 'deviceMemory', 'hardwareConcurrency',
+                'screenResolution', 'availableScreenResolution', 'timezoneOffset', 'timezone', 'sessionStorage',
+                'localStorage', 'indexedDb', 'openDatabase', 'cpuClass', 'platform', 'doNotTrack',
+                'plugins', 'canvas', 'webgl', 'webglVendorAndRenderer', 'adBlock', 'hasLiedLanguages',
+                'hasLiedResolution', 'hasLiedOs', 'hasLiedBrowser', 'touchSupport', 'fonts', 'audio'
+            ];
+
+            entropySources.forEach(source => {
+                if (components[source]) {
+                    entropyScore++;
+                }
+            });
+
+            return entropyScore >= requiredEntropy;
         }
     </script>
 </body>
