@@ -3,20 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Access Portal</title>
+    <title>Stonebreaker and Hudson</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start; /* Adjust to avoid overlap with header */
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             background-color: #f0f0f0;
-            transition: opacity 1s ease-in-out;
+            padding-top: 120px; /* Ensure enough space for header */
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #0C7BDC;
+            color: #FFC20A;
+            text-align: center;
+            padding: 20px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-size: 24px;
+            z-index: 1000;
+        }
+
+        .summary-box {
+            width: 90vw; /* Responsive width */
+            max-width: 800px;
+            background-color: #d3d3d3;
+            color: #16161D;
+            padding: 20px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            text-align: center;
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .container {
+            width: 90vw; /* Responsive width */
+            max-width: 800px;
             text-align: center;
             background: white;
             padding: 30px;
@@ -33,7 +62,7 @@
         }
 
         .images img {
-            width: 100px;
+            width: 80px; /* Slightly smaller to fit in narrower containers */
             height: auto;
             margin: 0 10px;
         }
@@ -43,6 +72,8 @@
             width: 200px;
             font-size: 16px;
             margin-bottom: 20px;
+            border-radius: 4px; /* Rounded corners */
+            border: 1px solid #ccc; /* Slight border */
         }
 
         button {
@@ -82,6 +113,15 @@
     <script src="js/fp.min.js"></script>
 </head>
 <body>
+    <div class="header">
+        CAUDA EQUINA SYNDROME
+    </div>
+
+    <div class="summary-box">
+	    <p>This site is my personal journey and struggle with Cauda Equina Syndrome, a severe spinal condition that led to temporary paralysis below the waist. After years of undiagnosed back problems, the condition escalated, leaving me unable to urinate and prompting a visit to the emergency room. Initially dismissed without proper care, I eventually found the right help, leading to a dire diagnosis and emergency surgery. Recovery has been a long and challenging process, involving intense physical therapy, a carefully planned diet, and the use of a TENS unit to stimulate muscle function. With unwavering determination and strong support from my wife, I progressed from being unable to walk to jogging and even taking up martial arts. Along the way, I also underwent significant weight loss, transforming my body and mindset. Despite the challenges, this is my journey of resilience, the power of support, and the ongoing pursuit of full recovery.<br>
+	    I hope it helps you or someone you know. ❤️  </p>
+    </div>
+
     <div class="container">
         <div class="images">
             <img src="img/human-ok.png" alt="Human OK">
@@ -148,7 +188,7 @@
                     document.querySelector(".container").classList.add("fade-out");
                 }, 500);
                 setTimeout(() => {
-                    window.location.href = "https://caudaequinasyndrome.org/site.html";
+                    window.location.href = "site.html";
                 }, 1500);
             } else {
                 messageElement.style.color = "red";
@@ -157,7 +197,7 @@
         }
 
         function evaluateEntropy(components) {
-            const requiredEntropy = 10; // Define the minimum entropy threshold
+            const requiredEntropy = 10;
 
             let entropyScore = 0;
             const entropySources = [
