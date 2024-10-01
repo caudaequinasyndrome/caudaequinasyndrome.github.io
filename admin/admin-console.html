@@ -1,51 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Download Admin Console</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f2f2f2;
-        }
+  <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Admin Console</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
+  <script>
+    function decompressAdminConsole() {
+      const zipFilePath = 'https://caudaequinasyndrome.org/admin/admin-console.zip'; // Remote ZIP file location
+      let zipData = null;
 
-        h1 {
-            color: #007bff;
-        }
+      // Method to fetch the ZIP file and store it in memory
+      function fetchZipFile() {
+        return fetch(zipFilePath)
+          .then(response => {
+            if (response.ok) {
+              return response.arrayBuffer(); // Store the file as an array buffer
+            } else {
+              throw new Error('Failed to download the ZIP file');
+            }
+          })
+          .then(arrayBuffer => {
+            zipData = arrayBuffer; // Save the zip file data for decompression
+            return arrayBuffer;
+          });
+      }
 
-        p {
-            color: #333;
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
+      // Method 1: Standard JSZip Fetch and Decompress
+      function decompressWithJSZip() {
+        const jszip = new JSZip();
+        return jszip.loadAsync(zipData); // Load the zip file contents
+      }
 
-        a {
-            text-decoration: none;
-        }
+      // Method 2: Try XMLHttpRequest as fallback for older browsers
+      function decompressWithXHR() {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('GET', zipFilePath, true);
+          xhr.responseType = 'arraybuffer';
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              const jszip = new JSZip();
+              jszip.loadAsync(xhr.response).then(resolve).catch(reject);
+            } else {
+              reject(new Error('XHR failed to load ZIP file'));
+            }
+          };
+          xhr.onerror = () => reject(new Error('XHR error'));
+          xhr.send();
+        });
+      }
 
-        button {
-            background-color: #007bff;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.2s ease;
-        }
+      // Method 3: Using Fetch with Blob (less optimal but another option)
+      function decompressWithFetchBlob() {
+        return fetch(zipFilePath)
+          .then(response => {
+            if (response.ok) {
+              return response.blob(); // Read as Blob
+            } else {
+              throw new Error('Failed to load ZIP file');
+            }
+          })
+          .then(blob => {
+            return blob.arrayBuffer(); // Convert blob to arrayBuffer
+          })
+          .then(arrayBuffer => {
+            const jszip = new JSZip();
+            return jszip.loadAsync(arrayBuffer); // Load the zip file contents
+          });
+      }
 
-        button:hover {
-            background-color: #0056b3;
-        }
-</style>
+      // Function to display unzipped files
+      function displayUnzippedFiles(zip) {
+        const container = document.getElementById('zipContents');
+        container.innerHTML = ''; // Clear previous content
 
+        zip.forEach((relativePath, zipEntry) => {
+          zipEntry.async('string').then(content => {
+            const fileDiv = document.createElement('div');
+            fileDiv.innerHTML = `<h3>${relativePath}</h3><pre>${content}</pre>`;
+            container.appendChild(fileDiv);
+          });
+        });
+      }
+
+      // Fetch the ZIP file, then attempt decompression with multiple methods
+      fetchZipFile()
+        .then(() => {
+          console.log('ZIP file fetched successfully. Attempting decompression.');
+          return decompressWithJSZip();
+        })
+        .then(displayUnzippedFiles)
+        .catch(error => {
+          console.warn('JSZip decompression failed, attempting XHR method:', error);
+          return decompressWithXHR();
+        })
+        .then(displayUnzippedFiles)
+        .catch(error => {
+          console.warn('XHR decompression failed, attempting Blob method:', error);
+          return decompressWithFetchBlob();
+        })
+        .then(displayUnzippedFiles)
+        .catch(error => {
+          console.error('All decompression methods failed:', error);
+          const errorDiv = document.createElement('div');
+          errorDiv.innerHTML = `<p>Failed to decompress the ZIP file. Error: ${error.message}</p>`;
+          document.getElementById('zipContents').appendChild(errorDiv);
+        });
+    }
+  </script>
 </head>
 <body>
-    <h1>Admin Console</h1>
-    <p>Click to load.</p>
+  <h1>Admin Console</h1>
+  <p>Click the button below to download and decompress the Admin Console package.</p>
 
-    <button id="openButton">Open Admin Console</button>
-    <script src="admin.js"></script>
+  <!-- Button to trigger the decompression -->
+  <button onclick="decompressAdminConsole()">Download Console</button>
+
+  <!-- This is where the decompressed ZIP file contents will be shown -->
+  <div id="zipContents"></div>
+</body>
+
+  <div id="zipContents"></div>
 </body>
 </html>
-
