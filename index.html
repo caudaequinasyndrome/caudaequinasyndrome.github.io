@@ -196,26 +196,30 @@
             }
         }
 
-        function evaluateEntropy(components) {
-            const requiredEntropy = 10;
+function evaluateEntropy(components) {
+    const requiredEntropy = 10;
 
-            let entropyScore = 0;
-            const entropySources = [
-                'userAgent', 'language', 'colorDepth', 'deviceMemory', 'hardwareConcurrency',
-                'screenResolution', 'availableScreenResolution', 'timezoneOffset', 'timezone', 'sessionStorage',
-                'localStorage', 'indexedDb', 'openDatabase', 'cpuClass', 'platform', 'doNotTrack',
-                'plugins', 'canvas', 'webgl', 'webglVendorAndRenderer', 'adBlock', 'hasLiedLanguages',
-                'hasLiedResolution', 'hasLiedOs', 'hasLiedBrowser', 'touchSupport', 'fonts', 'audio'
-            ];
+    let entropyScore = 0;
+    const entropySources = [
+        'userAgent', 'language', 'colorDepth', 'deviceMemory', 'hardwareConcurrency',
+        'screenResolution', 'availableScreenResolution', 'timezoneOffset', 'timezone', 'sessionStorage',
+        'localStorage', 'indexedDb', 'openDatabase', 'cpuClass', 'platform', 'doNotTrack',
+        'plugins', 'canvas', 'webgl', 'webglVendorAndRenderer', 'adBlock', 'touchSupport', 'fonts', 'audio'
+    ];
 
-            entropySources.forEach(source => {
-                if (components[source]) {
-                    entropyScore++;
-                }
-            });
+    const hasLiedSources = [
+        'hasLiedLanguages', 'hasLiedResolution', 'hasLiedOs', 'hasLiedBrowser'
+    ];
 
-            return entropyScore >= requiredEntropy;
+    entropySources.forEach(source => {
+        if (components[source] && !hasLiedSources.includes(source)) {
+            entropyScore++;
         }
+    });
+
+    return entropyScore >= requiredEntropy;
+}
+
     </script>
 </body>
 </html>
